@@ -21,7 +21,7 @@ public class SMSegment: SMBasicSegment {
             self.resetContentFrame()
         }
     }
-        
+    
     // Segment Colour
     public var onSelectionColour: UIColor = UIColor.darkGrayColor() {
         didSet {
@@ -114,7 +114,7 @@ public class SMSegment: SMBasicSegment {
         }
     }
     
-   
+    
     private var imageView: UIImageView = UIImageView()
     private var label: UILabel = UILabel()
     private var labelWidth: CGFloat = 0.0
@@ -133,17 +133,16 @@ public class SMSegment: SMBasicSegment {
         self.titleFont = titleFont
         
         super.init(frame: CGRectZero)
-        self.setupUIElements(imageViewSize)
+        self.setupUIElements()
     }
     
     
     
-    func setupUIElements(imageViewSize: CGSize) {
+    func setupUIElements() {
         
         self.backgroundColor = self.offSelectionColour
         
         self.imageView.contentMode = UIViewContentMode.ScaleAspectFit
-        self.imageView.frame.size = imageViewSize
         self.addSubview(self.imageView)
         
         self.label.textAlignment = NSTextAlignment.Center
@@ -157,12 +156,12 @@ public class SMSegment: SMBasicSegment {
     private func resetContentFrame() {
         
         var distanceBetween: CGFloat = 0.0
-        var imageViewFrame = CGRectMake(0.0, self.verticalMargin, 0.0, self.frame.size.height - self.verticalMargin*2)
+        var imageViewFrame = CGRectMake(0.0, (self.frame.height / 2) - 10, 20, 20)
         
         if self.onSelectionImage != nil || self.offSelectionImage != nil {
             // Set imageView as a square
             imageViewFrame.size.width = self.frame.size.height - self.verticalMargin*2
-            distanceBetween = 5.0
+            distanceBetween = 4.0
         }
         
         // If there's no text, align imageView centred
@@ -176,7 +175,8 @@ public class SMSegment: SMBasicSegment {
         
         self.imageView.frame = imageViewFrame
         
-        self.label.frame = CGRectMake(imageViewFrame.origin.x + imageViewFrame.size.width + distanceBetween, self.verticalMargin, self.labelWidth, self.frame.size.height - self.verticalMargin * 2)
+        
+        self.label.frame = CGRectMake(imageViewFrame.origin.x + 24 + distanceBetween, self.verticalMargin, self.labelWidth, self.frame.size.height - self.verticalMargin * 2)
     }
     
     // MARK: Selections
