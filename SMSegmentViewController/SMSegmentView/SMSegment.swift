@@ -123,7 +123,7 @@ public class SMSegment: SMBasicSegment {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public init(verticalMargin: CGFloat, onSelectionColour: UIColor, offSelectionColour: UIColor, onSelectionTextColour: UIColor, offSelectionTextColour: UIColor, titleFont: UIFont) {
+    public init(verticalMargin: CGFloat, onSelectionColour: UIColor, offSelectionColour: UIColor, onSelectionTextColour: UIColor, offSelectionTextColour: UIColor, titleFont: UIFont, imageViewSize: CGSize) {
         
         self.verticalMargin = verticalMargin
         self.onSelectionColour = onSelectionColour
@@ -133,16 +133,17 @@ public class SMSegment: SMBasicSegment {
         self.titleFont = titleFont
         
         super.init(frame: CGRectZero)
-        self.setupUIElements()
+        self.setupUIElements(imageViewSize)
     }
     
     
     
-    func setupUIElements() {
+    func setupUIElements(imageViewSize: CGSize) {
         
         self.backgroundColor = self.offSelectionColour
         
         self.imageView.contentMode = UIViewContentMode.ScaleAspectFit
+        self.imageView.frame.size = imageViewSize
         self.addSubview(self.imageView)
         
         self.label.textAlignment = NSTextAlignment.Center
