@@ -116,7 +116,7 @@ public class SMSegment: SMBasicSegment {
     
     
     private var imageView: UIImageView = UIImageView()
-    private var label: UILabel = UILabel()
+    public var label: UILabel = UILabel()
     private var labelWidth: CGFloat = 0.0
     
     required public init?(coder aDecoder: NSCoder) {
@@ -175,8 +175,11 @@ public class SMSegment: SMBasicSegment {
         
         self.imageView.frame = imageViewFrame
         
-        
-        self.label.frame = CGRectMake(imageViewFrame.origin.x + 24 + distanceBetween, self.verticalMargin, self.labelWidth, self.frame.size.height - self.verticalMargin * 2)
+        if self.onSelectionImage == nil {
+            self.label.frame = CGRectMake((self.frame.width / 2) - (self.labelWidth / 2), self.verticalMargin, self.labelWidth, self.frame.size.height - self.verticalMargin * 2)
+        } else {
+            self.label.frame = CGRectMake(imageViewFrame.origin.x + 24 + distanceBetween, self.verticalMargin, self.labelWidth, self.frame.size.height - self.verticalMargin * 2)
+        }
     }
     
     // MARK: Selections
